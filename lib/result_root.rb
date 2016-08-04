@@ -169,12 +169,8 @@ class MResultRoot
 	end
 
 	def calc_axes
-		if job_file
-			job.axes
-		else
-			rp = ResultPath.parse @path
-			Hash[rp.to_a]
-		end
+		rp = ResultPath.parse @path
+		Hash[rp.to_a]
 	end
 
 	def eql?(_rto)
@@ -187,12 +183,8 @@ class MResultRoot
 
 	def axes_path
 		as = deepcopy(@axes)
-		if job_file
-			path_params = job.path_params
-		else
-			rp = ResultPath.parse @path
-			path_params = rp['path_params']
-		end
+		rp = ResultPath.parse @path
+		path_params = rp['path_params']
 		as['path_params'] = path_params
 		as
 	end
